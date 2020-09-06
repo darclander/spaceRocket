@@ -1,4 +1,4 @@
-OBJS = main.cpp controller.cpp gui.cpp rocket.cpp
+OBJS = main.cpp controller.cpp gui.cpp rocket.cpp game.cpp
 
 HEADERS =  -I./headers
 OBJ_NAME = ./debug/test
@@ -7,4 +7,4 @@ LIBRARY = -LC:\MinGW\i686-w64-mingw32\lib
 THEL = -lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_ttf
 
 all : $(OBJS)
-	g++ $(OBJS) $(HEADERS) $(INCLUDE) $(LIBRARY) $(THEL) -o $(OBJ_NAME)
+	g++ $(OBJS) $(INCLUDE) $(HEADERS) $(LIBRARY) $(THEL) -o $(OBJ_NAME)
