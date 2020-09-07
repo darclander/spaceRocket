@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
         startingTick = SDL_GetTicks();
 
         // Do stuff
+        game->render();
 
         endTick = SDL_GetTicks() - startingTick;
 

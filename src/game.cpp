@@ -33,6 +33,13 @@ void Game::init(const char *title, int w, int h, bool fullscreen) {
     }
 }
 
+
+
+void Game::render() {
+    SDL_RenderPresent(renderer);
+}
+
+
 void Game::clean() {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);

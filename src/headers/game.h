@@ -13,6 +13,7 @@ class Game {
         void init(const char *title, int w, int h, bool fullscreen);
 
         void update();
+        void render();
         void clean();
 
 
