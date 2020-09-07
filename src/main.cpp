@@ -14,6 +14,7 @@
 int main(int argc, char *argv[]) {
 
     Game *game = nullptr;
+    Controller *controller = nullptr;
 
     const int FPS = 60; // Set fps for game
     const int frameDelay = 1000 / FPS;
@@ -23,14 +24,19 @@ int main(int argc, char *argv[]) {
     int i = 0;
 
     game = new Game();
+    controller = new Controller();
+
+
 
     game->init("Test", 800, 800, false);
+    
 
-    while (i++ < 10) { // Change condition later
+    while (controller->getRunning()) { // Change condition later
 
         startingTick = SDL_GetTicks();
 
         // Do stuff
+        controller->handleEvents();
         game->render();
 
         endTick = SDL_GetTicks() - startingTick;
@@ -42,5 +48,7 @@ int main(int argc, char *argv[]) {
     }
 
     game->clean();
+    delete game;
+    delete controller;
     return 0;
 }
