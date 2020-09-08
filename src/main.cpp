@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
 
     game->clean();
     delete game;
+    delete r;
     delete controller;
     return 0;
 }
