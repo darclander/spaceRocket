@@ -31,14 +31,22 @@ int main(int argc, char *argv[]) {
     game->init("Test", 800, 800, false);
     
 
+    Rocket *r = new Rocket(*game);
+
     while (controller->getRunning()) { // Change condition later
 
         startingTick = SDL_GetTicks();
 
+        r->draw();
+
         // Do stuff
+
+
+
         controller->handleEvents();
         game->render();
 
+        // Cap for frames per second.
         endTick = SDL_GetTicks() - startingTick;
 
         if (frameDelay > endTick) {

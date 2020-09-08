@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
 
 class Game {
 
@@ -15,6 +16,8 @@ class Game {
         void update();
         void render();
         void clean();
+
+        SDL_Renderer *getRenderer();
 
 
     private: 
