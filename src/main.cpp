@@ -8,33 +8,27 @@
 #include "game.h"
 
 
-
-// Game *game = nullptr; // Will be used when Game has a constructor
-
 int main(int argc, char *argv[]) {
 
-    Game *game = nullptr;
-    Controller *controller = nullptr;
-
+    // Variable initialization, all variables which will be used in the main-scope.
+    
     const int FPS = 60; // Set fps for game
-    const int frameDelay = 1000 / FPS;
-
+    const int frameDelay = 1000 / FPS; // ???
+    
+    // Will be used for SDL_GetTicks(), see https://wiki.libsdl.org/SDL_GetTicks
     uint32_t startingTick;
     int endTick;
-    int i = 0;
 
-    game = new Game();
-    controller = new Controller();
-
-
+    Game *game = new Game();
+    Controller *controller = new Controller();
+ 
 
     game->init("Test", 800, 800, false);
-    
+    Rocket *r = new Rocket(*game); // Has to be created after Game since its depending on where to be drawn. (Avoid public renderer in game)
 
-    Rocket *r = new Rocket(*game);
+
 
     while (controller->getRunning()) { // Change condition later
-
         startingTick = SDL_GetTicks();
 
         r->draw();
@@ -56,6 +50,9 @@ int main(int argc, char *argv[]) {
     }
 
     game->clean();
+
+    // Be sure to always delete NEW objects.
+
     delete game;
     delete r;
     delete controller;
