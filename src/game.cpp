@@ -5,11 +5,12 @@ Game::Game() {
 }
 
 Game::~Game() {
-
+    delete rocket;
 }
 
 void Game::init(const char *title, int w, int h, bool fullscreen) {
     int flags = 0;
+
 
     if (fullscreen) {
         flags = SDL_WINDOW_FULLSCREEN;
@@ -31,9 +32,13 @@ void Game::init(const char *title, int w, int h, bool fullscreen) {
         }
 
     }
+    rocket = new Rocket(renderer);
 }
 
-
+void Game::update() {
+    rocket->draw(renderer);
+    rocket->update();
+}
 
 void Game::render() {
     SDL_RenderPresent(renderer);
@@ -47,6 +52,3 @@ void Game::clean() {
 }
 
 
-SDL_Renderer *Game::getRenderer() {
-    return renderer;
-}

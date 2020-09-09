@@ -5,6 +5,8 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
+#include "rocket.h"
+
 class Game {
 
     public:
@@ -17,11 +19,12 @@ class Game {
         void render();
         void clean();
 
-        SDL_Renderer *getRenderer();
-
-
     private: 
         SDL_Renderer *renderer;
         SDL_Window *window;
+
+        SDL_Event event;
+
+        Rocket *rocket;
 
 };

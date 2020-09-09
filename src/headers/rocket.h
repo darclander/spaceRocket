@@ -2,24 +2,24 @@
 
 #include <iostream>
 
-#include "game.h"
-
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_Image.h"
 
 
 class Rocket {
 
     
     public:
-        Rocket(Game game);
+        Rocket(SDL_Renderer *r);
         ~Rocket();
 
-        void draw();
+        void draw(SDL_Renderer *r);
+        void update();
 
 
     private:
-        Game ui;
         SDL_Texture *texture;
+        SDL_Renderer *renderer;
 
 
 };

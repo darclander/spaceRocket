@@ -24,20 +24,21 @@ int main(int argc, char *argv[]) {
  
 
     game->init("Test", 800, 800, false);
-    Rocket *r = new Rocket(*game); // Has to be created after Game since its depending on where to be drawn. (Avoid public renderer in game)
+    //Rocket *r = new Rocket(*game); // Has to be created after Game since its depending on where to be drawn. (Avoid public renderer in game)
 
 
 
     while (controller->getRunning()) { // Change condition later
         startingTick = SDL_GetTicks();
 
-        r->draw();
+        //r->draw();
 
-        // Do stuff
+// Do stuff
 
 
 
         controller->handleEvents();
+        game->update();
         game->render();
 
         // Cap for frames per second.
@@ -54,7 +55,6 @@ int main(int argc, char *argv[]) {
     // Be sure to always delete NEW objects.
 
     delete game;
-    delete r;
     delete controller;
     return 0;
 }
