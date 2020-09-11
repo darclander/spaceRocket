@@ -7,13 +7,21 @@
 #include "rocket.h"
 #include "game.h"
 
+#define FPS 60
+#define frameDelay = 1000 / FPS
+
+void fpsCap(Uint32 starting_tick) {
+    if ((1000 / FPS) > SDL_GetTicks() - starting_tick) {
+        SDL_Delay(1000 / FPS - (SDL_GetTicks() - starting_tick));
+    }
+}
 
 int main(int argc, char *argv[]) {
 
     // Variable initialization, all variables which will be used in the main-scope.
     
-    const int FPS = 60; // Set fps for game
-    const int frameDelay = 1000 / FPS; // ???
+    // const int FPS = 60; // Set fps for game
+    // const int frameDelay = 1000 / FPS; // ???
     
     // Will be used for SDL_GetTicks(), see https://wiki.libsdl.org/SDL_GetTicks
     uint32_t startingTick;
@@ -23,7 +31,7 @@ int main(int argc, char *argv[]) {
     Controller *controller = new Controller();
  
 
-    game->init("Test", 800, 800, false);
+    game->init("Test", 1680, 800, false);
     //Rocket *r = new Rocket(*game); // Has to be created after Game since its depending on where to be drawn. (Avoid public renderer in game)
 
 
@@ -38,15 +46,12 @@ int main(int argc, char *argv[]) {
 
 
         controller->handleEvents();
+        game->clearRenderer();
         game->update();
         game->render();
 
         // Cap for frames per second.
-        endTick = SDL_GetTicks() - startingTick;
-
-        if (frameDelay > endTick) {
-            SDL_Delay(frameDelay - endTick);
-        }
+        fpsCap(startingTick);
 
     }
 

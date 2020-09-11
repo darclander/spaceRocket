@@ -17,6 +17,7 @@ class Game {
 
         void update();
         void render();
+        void clearRenderer();
         void clean();
 
     private: 

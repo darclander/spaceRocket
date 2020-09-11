@@ -1,7 +1,8 @@
 #include "rocket.h"
 
 Rocket::Rocket(SDL_Renderer *r) {
-
+    degrees = 0;
+    rImg.x = rImg.y = rImg.w = rImg.h = 100;
     SDL_Surface *tempSurface = IMG_Load("./duk.png");
 
     if (!tempSurface) {
@@ -25,13 +26,22 @@ void Rocket::update() {
 
     // Controls for player 1
     if(key_state[SDL_SCANCODE_W]) {
-        std::cout << "YES";
+        rImg.y -= 10;
     }
+    if (key_state[SDL_SCANCODE_S]) {
+        rImg.y += 10;
+    } 
+    if (key_state[SDL_SCANCODE_A]) {
+        rImg.x -= 10;
+    }
+     if (key_state[SDL_SCANCODE_D]) {
+        rImg.x += 10;
+        degrees += 10;
+    }
+
 }
 
 void Rocket::draw(SDL_Renderer *r) {
-    SDL_Rect x;
-    x.w = x.y = x.h = x.x = 100;
-    SDL_RenderCopyEx(r, texture, NULL, &x, 30, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(r, texture, NULL, &rImg, degrees, NULL, SDL_FLIP_NONE);
 }
 

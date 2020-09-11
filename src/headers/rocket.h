@@ -18,8 +18,9 @@ class Rocket {
 
 
     private:
+        int degrees;
         SDL_Texture *texture;
         SDL_Renderer *renderer;
-
+        SDL_Rect rImg;
 
 };
