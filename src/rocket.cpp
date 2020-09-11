@@ -33,6 +33,7 @@ void Rocket::update() {
     } 
     if (key_state[SDL_SCANCODE_A]) {
         rImg.x -= 10;
+        degrees -= 10;
     }
      if (key_state[SDL_SCANCODE_D]) {
         rImg.x += 10;
