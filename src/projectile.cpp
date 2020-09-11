@@ -3,7 +3,6 @@
 Projectile::Projectile(int x, int y) {
     p.x = x;
     p.y = y;
-
     p.w = p.h = 5;
 }
 
