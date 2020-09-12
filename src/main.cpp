@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "SDL2/SDL.h"
 
@@ -6,6 +7,7 @@
 #include "controller.h"
 #include "rocket.h"
 #include "game.h"
+#include "projectile.h"
 
 #define FPS 60
 #define frameDelay = 1000 / FPS
@@ -31,8 +33,9 @@ int main(int argc, char *argv[]) {
     Controller *controller = new Controller();
  
 
+
+
     game->init("Test", 1680, 800, false);
-    //Rocket *r = new Rocket(*game); // Has to be created after Game since its depending on where to be drawn. (Avoid public renderer in game)
 
 
 
@@ -49,7 +52,6 @@ int main(int argc, char *argv[]) {
         game->clearRenderer();
         game->update();
         game->render();
-
         // Cap for frames per second.
         fpsCap(startingTick);
 

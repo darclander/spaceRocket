@@ -25,7 +25,7 @@ class Game {
         SDL_Window *window;
 
         SDL_Event event;
-
+        std::vector<Projectile> vect; // to add projectiles
         Rocket *rocket;
 
 };

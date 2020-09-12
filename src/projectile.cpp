@@ -17,6 +17,5 @@ void Projectile::draw(SDL_Renderer *renderer) {
 }
 
 void Projectile::update() {
-    p.x += 10;
-    p.y += 10;
+    p.y -= 10;
 }
