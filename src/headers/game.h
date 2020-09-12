@@ -5,6 +5,8 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
+#include "rocket.h"
+
 class Game {
 
     public:
@@ -15,13 +17,15 @@ class Game {
 
         void update();
         void render();
+        void clearRenderer();
         void clean();
-
-        SDL_Renderer *getRenderer();
-
 
     private: 
         SDL_Renderer *renderer;
         SDL_Window *window;
+
+        SDL_Event event;
+        std::vector<Projectile> vect; // to add projectiles
+        Rocket *rocket;
 
 };

@@ -5,11 +5,12 @@ Game::Game() {
 }
 
 Game::~Game() {
-
+    delete rocket;
 }
 
 void Game::init(const char *title, int w, int h, bool fullscreen) {
     int flags = 0;
+
 
     if (fullscreen) {
         flags = SDL_WINDOW_FULLSCREEN;
@@ -31,12 +32,27 @@ void Game::init(const char *title, int w, int h, bool fullscreen) {
         }
 
     }
+    rocket = new Rocket(renderer, vect);
 }
 
+void Game::update() {
+    std::cout << vect.size();
+    for(std::vector<Projectile>::iterator it = vect.begin(); it != vect.end(); ++it) {
+        it->update();
+        it->draw(renderer);
+    }
 
+    rocket->draw(renderer);
+    rocket->update();
+}
 
 void Game::render() {
     SDL_RenderPresent(renderer);
+}
+
+void Game::clearRenderer() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
 }
 
 
@@ -47,6 +63,3 @@ void Game::clean() {
 }
 
 
-SDL_Renderer *Game::getRenderer() {
-    return renderer;
-}
