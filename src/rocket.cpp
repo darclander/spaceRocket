@@ -5,7 +5,15 @@ Rocket::Rocket(SDL_Renderer *r, std::vector<Projectile> &v) {
     renderer = r;
     degrees = 0;
     rImg.x = rImg.y = rImg.w = rImg.h = 100;
-    SDL_Surface *tempSurface = IMG_Load("./duk.png");
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) < 0) {
+        std::cout << "Cant init audio";
+    }
+    // Amount of channels (Max amount of sounds playing at the same time)
+    Mix_AllocateChannels(32);
+    
+    shoot = new Sound("./sounds/collision.wav", 5);
+
+    SDL_Surface *tempSurface = IMG_Load("../img/duk.png");
 
     if (!tempSurface) {
         std::cout << "Failed to load picture: " << IMG_GetError();
@@ -19,6 +27,7 @@ Rocket::Rocket(SDL_Renderer *r, std::vector<Projectile> &v) {
 }
 
 Rocket::~Rocket() {
+    delete shoot;
     SDL_DestroyTexture(texture);
 }
 
@@ -45,6 +54,7 @@ void Rocket::update() {
         i++;
         if(i > 1) {
             vect->push_back(Projectile(rImg.x, rImg.y));
+            shoot->play();
             i = 0;
         }
     }
