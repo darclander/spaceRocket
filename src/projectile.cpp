@@ -1,6 +1,7 @@
 #include "projectile.h"
 
-Projectile::Projectile(int x, int y) {
+Projectile::Projectile(int x, int y, int d) {
+    degrees = d;
     p.x = x;
     p.y = y;
     p.w = p.h = 5;
@@ -17,5 +18,8 @@ void Projectile::draw(SDL_Renderer *renderer) {
 }
 
 void Projectile::update() {
-    p.y -= 5;
+    
+    p.x -= sin((degrees*3.14)/180);
+    p.y -= cos((degrees*3.14)/180);
+
 }

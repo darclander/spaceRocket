@@ -5,11 +5,9 @@ Rocket::Rocket(SDL_Renderer *r, std::vector<Projectile> &v) {
     renderer = r;
     degrees = 0;
     rImg.x = rImg.y = rImg.w = rImg.h = 100;
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) < 0) {
-        std::cout << "Cant init audio";
-    }
-    // Amount of channels (Max amount of sounds playing at the same time)
-    Mix_AllocateChannels(32);
+
+    // ROCKET SHOULDNT HANDLE ALL THE SOUNDS.
+
     
     shoot = new Sound("./sounds/collision.wav", 5);
 
@@ -53,7 +51,7 @@ void Rocket::update() {
     if (key_state[SDL_SCANCODE_SPACE]) {
         i++;
         if(i > 1) {
-            vect->push_back(Projectile(rImg.x, rImg.y));
+            vect->push_back(Projectile(rImg.x, rImg.y, degrees));
             shoot->play();
             i = 0;
         }

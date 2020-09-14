@@ -36,7 +36,6 @@ void Game::init(const char *title, int w, int h, bool fullscreen) {
 }
 
 void Game::update() {
-    std::cout << vect.size();
     for(std::vector<Projectile>::iterator it = vect.begin(); it != vect.end(); ++it) {
         it->update();
         it->draw(renderer);
