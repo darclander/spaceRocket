@@ -11,7 +11,6 @@ Game::~Game() {
 void Game::init(const char *title, int w, int h, bool fullscreen) {
     int flags = 0;
 
-
     if (fullscreen) {
         flags = SDL_WINDOW_FULLSCREEN;
     }
