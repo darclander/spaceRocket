@@ -1,45 +1,42 @@
 #include "button.h"
 
-Button::Button(const Window &window, int x, int y) : Window(window) {
+Button::Button(SDL_Renderer *r, int x, int y) {
     _button.draw_rect.w = 100;
     _button.draw_rect.h = 100;
     _button.draw_rect.x = x;
     _button.draw_rect.y = y;
-}
 
-void Button::create(int r, int g, int b) {
-    
-}
+    renderer = r;
 
-bool Button::drawButton() {
-    // draw button
-    SDL_SetRenderDrawColor(_renderer, _button.colour.r, _button.colour.g, _button.colour.b, _button.colour.a);
-    SDL_RenderFillRect(_renderer, &_button.draw_rect);
-
-    // if button press detected - reset it so it wouldn't trigger twice
-    if(_button.pressed) {
-        _button.pressed = false;
-        std::cout << "YES PRESSED";
-        return true;
-        
+    font = TTF_OpenFont("Roboto-Black.ttf", 14);
+    if(!font) {
+        fprintf(stderr, "Couldn't load font\n");
     }
-    return false;
+
 }
 
-// bool Button::drawButton(button_t *btn) {
-//     // draw button
-//     SDL_SetRenderDrawColor(_renderer, btn->colour.r, btn->colour.g, btn->colour.b, btn->colour.a);
-//     SDL_RenderFillRect(_renderer, &btn->draw_rect);
+Button::~Button() {
 
-//     // if button press detected - reset it so it wouldn't trigger twice
-//     if(btn->pressed) {
-//         btn->pressed = false;
-//         std::cout << "YES PRESSED";
-//         return true;
-        
-//     }
-//     return false;
-// }
+}
+
+void Button::draw() {
+    
+
+SDL_Color White = {255, 255, 255};
+SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, "hello", White); 
+SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); 
+
+SDL_Rect Message_rect; //create a rect
+Message_rect.x = 100;  //controls the rect's x coordinate 
+Message_rect.y = 100; // controls the rect's y coordinte
+Message_rect.w = 10; // controls the width of the rect
+Message_rect.h = 10; // controls the height of the rect
+
+
+SDL_RenderCopy(renderer, Message, NULL, &Message_rect); 
+SDL_FreeSurface(surfaceMessage);
+SDL_DestroyTexture(Message);
+}
 
 void Button::button_process_event(const SDL_Event *ev) {
     // react on mouse click within button rectangle by setting 'pressed'

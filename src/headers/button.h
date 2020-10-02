@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 #include "SDL2/SDL.h"
-#include "window.h"
+#include "SDL2/SDL_ttf.h"
 
     typedef struct {
         SDL_Rect draw_rect;    // dimensions of button
@@ -15,20 +16,22 @@
         int y;
     }button_t;
 
-class Button : public Window {
-public: 
+class Button {
 
+    public:
+        Button(SDL_Renderer *r, int x, int y);
+        ~Button();
 
-public:
-    Button(const Window &window, int x, int y);
-    ~Button();
+        void draw();
+        void button_process_event(const SDL_Event *ev);
 
-    bool drawButton();
-    void button_process_event(const SDL_Event *ev);
-    void create(int r, int g, int b);
+    private:
+        SDL_Texture *texture;
+        SDL_Renderer *renderer;
+        SDL_Rect rImg;
+        button_t _button;
+        TTF_Font *font;
 
-private:
-    button_t _button;
-
+        void drawTexture(SDL_Renderer *renderer, SDL_Texture *img, int x, int y);
 
 };

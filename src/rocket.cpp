@@ -58,7 +58,7 @@ void Rocket::update() {
     }
 }
 
-void Rocket::draw(SDL_Renderer *r) {
+void Rocket::draw() {
     SDL_RenderCopyEx(renderer, texture, NULL, &rImg, degrees, NULL, SDL_FLIP_NONE);
 }
 

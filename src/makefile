@@ -1,4 +1,4 @@
-OBJS = main.cpp controller.cpp gui.cpp rocket.cpp game.cpp projectile.cpp sound.cpp
+OBJS = main.cpp controller.cpp gui.cpp rocket.cpp game.cpp projectile.cpp sound.cpp button.cpp
 
 HEADERS =  -I./headers
 OBJ_NAME = ./debug/test

@@ -7,6 +7,7 @@
 #include "controller.h"
 #include "rocket.h"
 #include "game.h"
+#include "button.h"
 #include "projectile.h"
 
 #define FPS 60
@@ -39,7 +40,6 @@ int main(int argc, char *argv[]) {
     Game *game = new Game();
     Controller *controller = new Controller();
  
-    
 
 
     game->init("Test", 1680, 800, false);

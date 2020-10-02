@@ -6,9 +6,10 @@ Game::Game() {
 
 Game::~Game() {
     delete rocket;
+    delete b;
 }
 
-void Game::init(const char *title, int w, int h, bool fullscreen) {
+int Game::init(const char *title, int w, int h, bool fullscreen) {
     int flags = 0;
 
     if (fullscreen) {
@@ -30,8 +31,15 @@ void Game::init(const char *title, int w, int h, bool fullscreen) {
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         }
 
+        if(TTF_Init() != 0) {
+            fprintf(stderr, "Couldn't init SDL_ttf: %s\n", TTF_GetError());
+            return 1;
+        }
+        
     }
     rocket = new Rocket(renderer, vect);
+    b = new Button(renderer, 10, 10);
+    return 0;
 }
 
 void Game::update() {
@@ -40,8 +48,10 @@ void Game::update() {
         it->draw(renderer);
     }
 
-    rocket->draw(renderer);
+    rocket->draw();
     rocket->update();
+
+    b->draw();
 }
 
 void Game::render() {

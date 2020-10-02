@@ -16,7 +16,7 @@ class Rocket {
         Rocket(SDL_Renderer *r, std::vector<Projectile> &v);
         ~Rocket();
 
-        void draw(SDL_Renderer *r);
+        void draw();
         void update();
 
 
