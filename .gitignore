@@ -37,3 +37,6 @@
 # Images
 *.png
 *.jpg
+
+# Misc
+*.ttf
