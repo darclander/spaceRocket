@@ -7,6 +7,7 @@ Game::Game() {
 Game::~Game() {
     delete rocket;
     delete b;
+    delete p;
 }
 
 int Game::init(const char *title, int w, int h, bool fullscreen) {
@@ -39,6 +40,7 @@ int Game::init(const char *title, int w, int h, bool fullscreen) {
     }
     rocket = new Rocket(renderer, vect);
     b = new Button(renderer, 10, 10);
+    p = new Pong(renderer, 10, 10, 100, 200);
     return 0;
 }
 
@@ -52,6 +54,10 @@ void Game::update() {
     rocket->update();
 
     b->draw();
+
+    p->draw();
+    p->update();
+
 }
 
 void Game::render() {

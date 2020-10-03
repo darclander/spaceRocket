@@ -8,6 +8,7 @@
 
 #include "rocket.h"
 #include "button.h"
+#include "pong.h"
 
 class Game {
 
@@ -30,5 +31,6 @@ class Game {
         std::vector<Projectile> vect; // to add projectiles
         Rocket *rocket;
         Button *b;
+        Pong *p;
 
 };
