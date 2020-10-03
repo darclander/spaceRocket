@@ -7,6 +7,7 @@
 #include "SDL2/SDL_Image.h"
 
 #include "projectile.h"
+#include "sound.h"
 
 class Rocket {
 
@@ -15,7 +16,7 @@ class Rocket {
         Rocket(SDL_Renderer *r, std::vector<Projectile> &v);
         ~Rocket();
 
-        void draw(SDL_Renderer *r);
+        void draw();
         void update();
 
 
@@ -26,5 +27,6 @@ class Rocket {
         SDL_Rect rImg;
         std::vector<Projectile> *vect;
         int i;
+        Sound *shoot;
 
 };

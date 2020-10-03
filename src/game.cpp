@@ -6,11 +6,12 @@ Game::Game() {
 
 Game::~Game() {
     delete rocket;
+    delete b;
+    delete p;
 }
 
-void Game::init(const char *title, int w, int h, bool fullscreen) {
+int Game::init(const char *title, int w, int h, bool fullscreen) {
     int flags = 0;
-
 
     if (fullscreen) {
         flags = SDL_WINDOW_FULLSCREEN;
@@ -31,19 +32,32 @@ void Game::init(const char *title, int w, int h, bool fullscreen) {
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         }
 
+        if(TTF_Init() != 0) {
+            fprintf(stderr, "Couldn't init SDL_ttf: %s\n", TTF_GetError());
+            return 1;
+        }
+        
     }
     rocket = new Rocket(renderer, vect);
+    b = new Button(renderer, 10, 10);
+    p = new Pong(renderer, 10, 10, 100, 200);
+    return 0;
 }
 
 void Game::update() {
-    std::cout << vect.size();
     for(std::vector<Projectile>::iterator it = vect.begin(); it != vect.end(); ++it) {
         it->update();
         it->draw(renderer);
     }
 
-    rocket->draw(renderer);
+    rocket->draw();
     rocket->update();
+
+    b->draw();
+
+    p->draw();
+    p->update();
+
 }
 
 void Game::render() {

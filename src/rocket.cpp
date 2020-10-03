@@ -5,7 +5,13 @@ Rocket::Rocket(SDL_Renderer *r, std::vector<Projectile> &v) {
     renderer = r;
     degrees = 0;
     rImg.x = rImg.y = rImg.w = rImg.h = 100;
-    SDL_Surface *tempSurface = IMG_Load("./duk.png");
+
+    // ROCKET SHOULDNT HANDLE ALL THE SOUNDS.
+
+    
+    shoot = new Sound("./sounds/collision.wav", 5);
+
+    SDL_Surface *tempSurface = IMG_Load("../img/duk.png");
 
     if (!tempSurface) {
         std::cout << "Failed to load picture: " << IMG_GetError();
@@ -19,6 +25,7 @@ Rocket::Rocket(SDL_Renderer *r, std::vector<Projectile> &v) {
 }
 
 Rocket::~Rocket() {
+    delete shoot;
     SDL_DestroyTexture(texture);
 }
 
@@ -44,13 +51,14 @@ void Rocket::update() {
     if (key_state[SDL_SCANCODE_SPACE]) {
         i++;
         if(i > 1) {
-            vect->push_back(Projectile(rImg.x, rImg.y));
+            vect->push_back(Projectile(rImg.x, rImg.y, degrees));
+            shoot->play();
             i = 0;
         }
     }
 }
 
-void Rocket::draw(SDL_Renderer *r) {
+void Rocket::draw() {
     SDL_RenderCopyEx(renderer, texture, NULL, &rImg, degrees, NULL, SDL_FLIP_NONE);
 }
 

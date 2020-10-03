@@ -7,6 +7,7 @@
 #include "controller.h"
 #include "rocket.h"
 #include "game.h"
+#include "button.h"
 #include "projectile.h"
 
 #define FPS 60
@@ -20,6 +21,13 @@ void fpsCap(Uint32 starting_tick) {
 
 int main(int argc, char *argv[]) {
 
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) < 0) {
+        std::cout << "Cant init audio";
+    }
+    // Amount of channels (Max amount of sounds playing at the same time)
+    Mix_AllocateChannels(32);
+
     // Variable initialization, all variables which will be used in the main-scope.
     
     // const int FPS = 60; // Set fps for game
@@ -32,7 +40,6 @@ int main(int argc, char *argv[]) {
     Game *game = new Game();
     Controller *controller = new Controller();
  
-
 
 
     game->init("Test", 1680, 800, false);
