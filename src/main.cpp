@@ -3,7 +3,6 @@
 
 #include "SDL2/SDL.h"
 
-#include "gui.h"
 #include "controller.h"
 #include "rocket.h"
 #include "game.h"

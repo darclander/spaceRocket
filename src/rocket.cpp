@@ -11,7 +11,7 @@ Rocket::Rocket(SDL_Renderer *r, std::vector<Projectile> &v) {
     
     shoot = new Sound("./sounds/collision.wav", 5);
 
-    SDL_Surface *tempSurface = IMG_Load("../img/duk.png");
+    SDL_Surface *tempSurface = IMG_Load("./duk.png");
 
     if (!tempSurface) {
         std::cout << "Failed to load picture: " << IMG_GetError();
@@ -42,11 +42,11 @@ void Rocket::update() {
     } 
     if (key_state[SDL_SCANCODE_A]) {
         rImg.x -= 10;
-        degrees -= 10;
+        degrees -= 5;
     }
     if (key_state[SDL_SCANCODE_D]) {
         rImg.x += 10;
-        degrees += 10;
+        degrees += 5;
     }
     if (key_state[SDL_SCANCODE_SPACE]) {
         i++;

@@ -55,8 +55,8 @@ void Game::update() {
 
     b->draw();
 
-    p->draw();
-    p->update();
+    // p->draw();
+    // p->update();
 
 }
 
