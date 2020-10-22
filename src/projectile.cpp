@@ -20,8 +20,8 @@ void Projectile::draw(SDL_Renderer *renderer) {
 }
 
 void Projectile::update() {
-    float new_x = 3*cos(((90+degrees)*3.14)/180);
-    float new_y = 3*sin(((90+degrees)*3.14)/180);
+    float new_x = 2*cos(((90+degrees)*3.14)/180);
+    float new_y = 2*sin(((90+degrees)*3.14)/180);
     // First quadrant
     if ( new_y > 0.1 ) {
         p.y -= new_y;

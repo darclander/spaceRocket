@@ -34,24 +34,31 @@ void Rocket::update() {
     const Uint8 *key_state = SDL_GetKeyboardState(NULL);
 
     // Controls for player 1
+
+    /// TODO: Turn speed and degrees into variables
     if(key_state[SDL_SCANCODE_W]) {
-        rImg.y -= 10;
+        rImg.y -= 5;
     }
     if (key_state[SDL_SCANCODE_S]) {
-        rImg.y += 10;
+        rImg.y += 5;
     } 
     if (key_state[SDL_SCANCODE_A]) {
-        rImg.x -= 10;
-        degrees -= 5;
+        rImg.x -= 5;
+
     }
     if (key_state[SDL_SCANCODE_D]) {
-        rImg.x += 10;
-        degrees += 5;
+        rImg.x += 5;
+    }
+    if(key_state[SDL_SCANCODE_RIGHT]) {
+        degrees += 1;
+    }
+    if(key_state[SDL_SCANCODE_LEFT]) {
+        degrees -= 1;
     }
     if (key_state[SDL_SCANCODE_SPACE]) {
         i++;
-        if(i > 1) {
-            vect->push_back(Projectile(rImg.x, rImg.y, degrees));
+        if(i > 20) {
+            vect->push_back(Projectile(rImg.x - 10, rImg.y - 10, degrees)); // Creates the projectile with starting x and y.
             shoot->play();
             i = 0;
         }
