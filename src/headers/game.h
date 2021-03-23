@@ -9,6 +9,8 @@
 #include "rocket.h"
 #include "button.h"
 #include "pong.h"
+#include "object.h"
+#include "weapon.h"
 
 class Game {
 
@@ -32,5 +34,6 @@ class Game {
         Rocket *rocket;
         Button *b;
         Pong *p;
+        Weapon *o;
 
 };

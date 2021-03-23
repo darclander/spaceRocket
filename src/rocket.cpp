@@ -63,6 +63,7 @@ void Rocket::update() {
             i = 0;
         }
     }
+    Rocket::draw();
 }
 
 void Rocket::draw() {

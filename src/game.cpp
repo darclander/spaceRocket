@@ -41,6 +41,8 @@ int Game::init(const char *title, int w, int h, bool fullscreen) {
     rocket = new Rocket(renderer, vect);
     b = new Button(renderer, 10, 10);
     p = new Pong(renderer, 10, 10, 100, 200);
+    o = new Weapon(renderer, "./duk.png");
+    
     return 0;
 }
 
@@ -50,11 +52,10 @@ void Game::update() {
         it->draw(renderer);
     }
 
-    rocket->draw();
     rocket->update();
 
     b->draw();
-
+    o->draw();
     // p->draw();
     // p->update();
 

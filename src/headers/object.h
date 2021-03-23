@@ -7,26 +7,24 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_Image.h"
 
-#include "projectile.h"
-#include "sound.h"
 
-class Rocket {
+
+class Object {
 
     
     public:
-        Rocket(SDL_Renderer *r, std::vector<Projectile> &v);
-        ~Rocket();
+        Object(SDL_Renderer *r, const char *imgPath);
+        ~Object();
 
         void draw();
         void update();
 
 
     private:
-        int degrees;
+        int degrees = 0;
         SDL_Texture *texture;
         SDL_Renderer *renderer;
         SDL_Rect rImg;
-        std::vector<Projectile> *vect;
-        int i;
-        Sound *shoot;
+        const char *imgPath;
+
 };
